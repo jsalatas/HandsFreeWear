@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">HandsFree Wear</string>
+    <string name="accessibility_service_label">HandsFree Wear</string>
+    <string name="accessibility_service_description">Use Your smart watch using wrist gestures</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_activity_get_overlay_permissions">GetOverlayPermissionsActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="settings_accuracy">Recognition Accuracy</string>
+    <string name="settings_accuracy_less">Less</string>
+    <string name="settings_accuracy_more">More</string>
+    <string name="vibrate">Vibrate on Gesture</string>
+    <string name="highlight_selected">Highlight Selected</string>
+</resources>

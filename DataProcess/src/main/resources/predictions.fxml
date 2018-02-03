@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import org.jfree.chart.fx.ChartViewer?>
+
+<GridPane minHeight="600.0" minWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.ictpro.jsalatas.gestures.ui.predictions.controller.PredictionsController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" percentHeight="60.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="26.0" minHeight="26.0" prefHeight="26.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <HBox GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+            <children>
+                <ChartViewer fx:id="viewerAcceleration" HBox.hgrow="ALWAYS" />
+            </children>
+        </HBox>
+        <HBox GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+            <children>
+                <ChartViewer fx:id="viewerClassification" HBox.hgrow="ALWAYS" />
+            </children>
+        </HBox>
+        <HBox fillHeight="false" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="NEVER">
+            <children>
+            <Label fx:id="lblPos" maxHeight="26.0" maxWidth="60.0" minHeight="26.0" minWidth="60.0" prefHeight="26.0" prefWidth="60.0" textAlignment="CENTER" />
+                <ScrollBar fx:id="position" maxHeight="26.0" minHeight="26.0" prefHeight="26.0" unitIncrement="10.0" HBox.hgrow="ALWAYS">
+                    <padding>
+                        <Insets right="5.0" />
+                    </padding>
+                </ScrollBar>
+                <ScrollBar fx:id="zoom" blockIncrement="50.0" max="20000.0" maxHeight="26.0" min="50.0" minHeight="26.0" minWidth="200.0" prefHeight="26.0" unitIncrement="50.0" />
+            <TextField fx:id="txtWindowSize" layoutX="760.0" layoutY="10.0" maxHeight="26.0" maxWidth="50.0" minHeight="26.0" minWidth="50.0" prefHeight="26.0" prefWidth="50.0" text="20" />
+            </children>
+        </HBox>
+    </children>
+</GridPane>

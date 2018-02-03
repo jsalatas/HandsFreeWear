@@ -1,0 +1,10 @@
+<accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
+    android:description="@string/accessibility_service_description"
+    android:accessibilityEventTypes="typeWindowContentChanged|typeWindowStateChanged|typeWindowsChanged"
+    android:accessibilityFlags="flagReportViewIds|flagRetrieveInteractiveWindows"
+    android:accessibilityFeedbackType="feedbackVisual|feedbackHaptic|feedbackGeneric"
+    android:notificationTimeout="500"
+    android:canRetrieveWindowContent="true"
+    android:settingsActivity="gr.ictpro.jsalatas.handsfreewear.ui.SettingsActivity"
+    android:canPerformGestures="true"
+    />

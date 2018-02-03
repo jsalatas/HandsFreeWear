@@ -1,0 +1,20 @@
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+.chart-series-line {
+    -fx-stroke-width: 1px;
+    -fx-effect: null;
+}
+
+.default-color0.chart-series-line { -fx-stroke: #ff0000; }
+.default-color1.chart-series-line { -fx-stroke: #00ff00; }
+.default-color2.chart-series-line { -fx-stroke: #0000ff; }
+
+.chart-line-symbol {
+    -fx-background-insets: 0,0;
+    -fx-background-radius: 0px;
+    -fx-padding: 0px;
+    -fx-shape: "";
+    -fx-background-color: transparent;
+}

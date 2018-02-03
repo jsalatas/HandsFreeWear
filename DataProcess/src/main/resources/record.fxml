@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.ictpro.jsalatas.gestures.ui.recorddata.controller.RecordController">
+    <children>
+        <LineChart fx:id="chartAcceleration" animated="false" stylesheets="@chart.css" HBox.hgrow="ALWAYS">
+            <xAxis>
+                <NumberAxis animated="false" side="BOTTOM" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis animated="false" side="LEFT" />
+            </yAxis>
+        </LineChart>
+    </children>
+</HBox>
