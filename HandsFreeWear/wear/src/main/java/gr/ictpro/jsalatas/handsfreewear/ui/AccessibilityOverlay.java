@@ -157,7 +157,7 @@ public class AccessibilityOverlay {
             selectedIndex = 0;
             actionResult = swipe(findNode(true, getActionsForGesture(gesture)), gesture, true);
             selectedIndex = oldSelected;
-            if (!actionResult) {
+            if (!actionResult && !elements.isEmpty()) {
                 // This is speculative: try the swipe gesture in root window
                 actionResult = swipe(elements.get(0), gesture, true);
             }
@@ -176,7 +176,7 @@ public class AccessibilityOverlay {
                 selectedIndex = 0;
                 actionResult = swipe(findNode(true, getActionsForGesture(gesture)), gesture, false);
                 selectedIndex = oldSelected;
-                if (!actionResult) {
+                if (!actionResult && !elements.isEmpty()) {
                     // This is speculative: try the swipe gesture in root window
                     actionResult = swipe(elements.get(0), gesture, false);
                 }
@@ -281,7 +281,7 @@ public class AccessibilityOverlay {
     }
 
     private AccessibilityNodeInfo findNode(boolean lookForward, List<AccessibilityAction> actions) {
-        if (elements.size() == 0) {
+        if (elements.isEmpty()) {
             return null;
         }
 
