@@ -394,7 +394,7 @@ public class AccessibilityOverlay {
         WindowManager.LayoutParams overlayParams = new WindowManager.LayoutParams(
                 width, height,
                 xpos, ypos,
-                WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
+                WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
                 format);
 
