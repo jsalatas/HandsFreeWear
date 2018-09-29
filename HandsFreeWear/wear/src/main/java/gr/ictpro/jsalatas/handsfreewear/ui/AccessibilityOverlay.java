@@ -44,6 +44,8 @@ public class AccessibilityOverlay {
 
     private int selectedIndex = -1;
 
+    private boolean updating = false;
+
     public static AccessibilityOverlay getInstance() {
         if (accessibilityOverlay == null) {
             accessibilityOverlay = new AccessibilityOverlay();
@@ -412,6 +414,7 @@ public class AccessibilityOverlay {
 
         WindowManager windowManager = (WindowManager) HandsFreeWearApplication.getContext().getSystemService(Context.WINDOW_SERVICE);
         try {
+            updating = true;
             assert windowManager != null;
             windowManager.addView(layout, overlayParams);
         } catch (Exception e) {
@@ -420,6 +423,13 @@ public class AccessibilityOverlay {
     }
 
     public void setRootNode(AccessibilityNodeInfo rootNode) {
+        if(updating && rootNode.equals(elements.get(0))) {
+            updating = false;
+            return;
+        }
+
+        updating = false;
+
         if (rootNode == null) {
             elements.clear();
             selectedIndex = -1;
