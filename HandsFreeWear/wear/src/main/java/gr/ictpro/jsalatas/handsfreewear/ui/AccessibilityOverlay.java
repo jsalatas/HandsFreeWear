@@ -44,8 +44,6 @@ public class AccessibilityOverlay {
 
     private int selectedIndex = -1;
 
-    private boolean updating = false;
-
     public static AccessibilityOverlay getInstance() {
         if (accessibilityOverlay == null) {
             accessibilityOverlay = new AccessibilityOverlay();
@@ -151,7 +149,7 @@ public class AccessibilityOverlay {
             } else {
                 // TODO: do I need this?
                 // just blink again the current selection
-                setSelected(getSelectedNode());
+                //setSelected(getSelectedNode());
             }
             actionResult = true;
         } else if (gesture == 9 || gesture == 10 || gesture == 11 || gesture == 12) {
@@ -173,7 +171,7 @@ public class AccessibilityOverlay {
                 actionResult = performAction(node, actions);
             }
             // One more
-            if(!actionResult && (gesture == 1 || gesture == 2 || gesture == 3 || gesture == 4)) {
+            if (!actionResult && (gesture == 1 || gesture == 2 || gesture == 3 || gesture == 4)) {
                 int oldSelected = selectedIndex;
                 selectedIndex = 0;
                 actionResult = swipe(findNode(true, getActionsForGesture(gesture)), gesture, false);
@@ -207,8 +205,8 @@ public class AccessibilityOverlay {
         int vertical = (r.bottom - r.top) / 2;
         int quarter = r.height() / 4;
 
-        int start = gesture == 9 || gesture == 1 ? r.right-(fullScreen? 1 : quarter): r.left+(fullScreen? 1 : quarter);
-        int end = gesture == 9 || gesture == 1 ? r.left+(fullScreen? 1 : quarter) : r.right-(fullScreen? 1 : quarter);
+        int start = gesture == 9 || gesture == 1 ? r.right - (fullScreen ? 1 : quarter) : r.left + (fullScreen ? 1 : quarter);
+        int end = gesture == 9 || gesture == 1 ? r.left + (fullScreen ? 1 : quarter) : r.right - (fullScreen ? 1 : quarter);
 
         GestureDescription.Builder swipe = new GestureDescription.Builder();
         Path p = new Path();
@@ -228,8 +226,8 @@ public class AccessibilityOverlay {
         node.getBoundsInScreen(r);
         int horizontal = (r.right - r.left) / 2;
         int quarter = r.width() / 4;
-        int start = gesture == 11 || gesture == 3 ? r.top +(fullScreen? 1 : quarter) : r.bottom-(fullScreen? 1 : quarter);
-        int end = gesture == 11 || gesture == 3 ? r.bottom-(fullScreen? 1 : quarter) : r.top+(fullScreen? 1 : quarter);
+        int start = gesture == 11 || gesture == 3 ? r.top + (fullScreen ? 1 : quarter) : r.bottom - (fullScreen ? 1 : quarter);
+        int end = gesture == 11 || gesture == 3 ? r.bottom - (fullScreen ? 1 : quarter) : r.top + (fullScreen ? 1 : quarter);
         GestureDescription.Builder swipe = new GestureDescription.Builder();
         Path p = new Path();
 
@@ -372,26 +370,26 @@ public class AccessibilityOverlay {
     }
 
     private void showOverlay(AccessibilityNodeInfo selected) {
-        if (!settings.getHighlightSelected()) {
+        if (!settings.getHighlightSelected() || selected == null) {
             hideOverlay();
             return;
         }
+
         int width = 0;
         int height = 0;
         int xpos = 0;
         int ypos = 0;
         int format = PixelFormat.TRANSLUCENT;
-        if (selected != null) {
-            Rect r = new Rect();
-            selected.getBoundsInScreen(r);
 
-            xpos = r.left;
-            ypos = r.top;
-            width = r.width();
-            height = r.height();
-            format = PixelFormat.OPAQUE;
-            System.out.println("Blink: " + selected);
-        }
+        Rect r = new Rect();
+        selected.getBoundsInScreen(r);
+
+        xpos = r.left;
+        ypos = r.top;
+        width = r.width();
+        height = r.height();
+        format = PixelFormat.OPAQUE;
+        System.out.println("Blink: " + selected);
 
         WindowManager.LayoutParams overlayParams = new WindowManager.LayoutParams(
                 width, height,
@@ -408,13 +406,12 @@ public class AccessibilityOverlay {
 
 
         layout = new FrameLayout(HandsFreeWearApplication.getContext());
-        layout.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS);
         layout.setLayoutParams(overlayParams);
+        layout.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS);
         layout.setBackgroundColor(Color.WHITE);
 
         WindowManager windowManager = (WindowManager) HandsFreeWearApplication.getContext().getSystemService(Context.WINDOW_SERVICE);
         try {
-            updating = true;
             assert windowManager != null;
             windowManager.addView(layout, overlayParams);
         } catch (Exception e) {
@@ -423,13 +420,6 @@ public class AccessibilityOverlay {
     }
 
     public void setRootNode(AccessibilityNodeInfo rootNode) {
-        if(updating && rootNode.equals(elements.get(0))) {
-            updating = false;
-            return;
-        }
-
-        updating = false;
-
         if (rootNode == null) {
             elements.clear();
             selectedIndex = -1;

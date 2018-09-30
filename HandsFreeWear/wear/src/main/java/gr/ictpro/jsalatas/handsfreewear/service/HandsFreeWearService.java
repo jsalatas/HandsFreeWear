@@ -72,16 +72,17 @@ public class HandsFreeWearService extends AccessibilityService {
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
-        if(Queue.getInstance().isDisabled()) {
+        if (Queue.getInstance().isDisabled()) {
             return;
         }
         System.out.println("EVENT: " + event);
 
-        if(event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED
+        if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED
                 || event.getEventType() == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED
-                || event.getEventType() == AccessibilityEvent.TYPE_WINDOWS_CHANGED) {
+                //|| event.getEventType() == AccessibilityEvent.TYPE_WINDOWS_CHANGED
+                ) {
             List<AccessibilityWindowInfo> windows = getWindows();
-            if(windows != null && windows.size()>0) {
+            if (windows != null && windows.size() > 0) {
                 AccessibilityOverlay.getInstance().setRootNode(getWindows().get(0).getRoot());
             }
         }

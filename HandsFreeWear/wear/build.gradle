@@ -6,8 +6,8 @@ android {
         applicationId "gr.ictpro.jsalatas.handsfreewear"
         minSdkVersion 26
         targetSdkVersion 27
-        versionCode 8
-        versionName "0.4.4"
+        versionCode 9
+        versionName "0.4.5"
     }
     buildTypes {
         release {
