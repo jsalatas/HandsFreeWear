@@ -14,7 +14,7 @@ class PLogger(ProgbarLogger):
             for k in self.params['metrics']:
                 if k in logs:
                     self.log_values.append((k, logs[k]))
-            self.progbar.update(epoch+1, self.log_values, force=True)
+            self.progbar.update(epoch+1, self.log_values)
 
     def on_epoch_begin(self, epoch, logs=None):
         self.epoch = epoch
